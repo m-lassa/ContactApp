@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.contactapp.Controller">
+    <center>
+        <VBox>
+            <children>
+                <TableView fx:id="contactTableView" onKeyPressed="#handleDeleteKeyPressed" prefHeight="500.0" prefWidth="800.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="firstNameCol" prefWidth="75.0" text="First Name" />
+                        <TableColumn fx:id="lastNameCol" prefWidth="75.0" text="Last Name" />
+                        <TableColumn fx:id="phoneNumCol" prefWidth="75.0" text="Phone Number" />
+                        <TableColumn fx:id="notesCol" prefWidth="105.0" text="Notes" />
+                    </columns>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                    </columnResizePolicy>
+                </TableView>
+            </children>
+        </VBox>
+
+
+    </center>
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Contacts">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#showContactDialogue" text="Add" />
+                        <SeparatorMenuItem />
+                        <MenuItem mnemonicParsing="false" onAction="#editSelectedItem" text="Edit" />
+                        <SeparatorMenuItem />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteSelectedItem" text="Delete" />
+                    </items>
+                </Menu>
+
+            </menus>
+        </MenuBar>
+    </top>
+   <bottom>
+       <GridPane>
+           <ChoiceBox fx:id="searchChoice" prefWidth="150.0" BorderPane.alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.rowIndex="0">
+               <BorderPane.margin>
+                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+
+               </BorderPane.margin>
+            <GridPane.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </GridPane.margin>
+           </ChoiceBox>
+           <TextField fx:id="searchField" GridPane.columnIndex="1" promptText="Search...">
+            <GridPane.margin>
+               <Insets bottom="5.0" right="5.0" top="5.0" />
+            </GridPane.margin></TextField>
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+       </GridPane>
+
+   </bottom>
+</BorderPane>

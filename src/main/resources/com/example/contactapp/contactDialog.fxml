@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<DialogPane  prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.contactapp.ContactDialogController">
+
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="First name: " GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <TextField fx:id="firstNameField" GridPane.rowIndex="1" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <Label text="Last name: " GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <TextField fx:id="lastNameField" GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <Label text="Phone Number: " GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <TextField fx:id="phoneNumField" GridPane.rowIndex="5" GridPane.columnIndex="0" GridPane.columnSpan="3" promptText="010-123456"/>
+            <Label text="Notes: " GridPane.rowIndex="6" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+            <TextArea fx:id="notesField" GridPane.rowIndex="7" GridPane.columnIndex="0" GridPane.columnSpan="3"/>
+        </GridPane>
+    </content>
+
+</DialogPane>
