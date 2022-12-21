@@ -79,7 +79,7 @@ public class Controller {
 
         contactTableView.getColumns().setAll(firstNameCol, lastNameCol, phoneNumCol, notesCol);
 
-        //Set the choices in the ChoiceBox: this will be used to search contact by either first or last name
+        //Set the choices in the ChoiceBox: this will be used to search contacts by either first or last name
         searchChoice.getItems().addAll("First Name", "Last Name");
         //By default it is set on First Name
         searchChoice.setValue("First Name");
@@ -97,12 +97,14 @@ public class Controller {
     }
 
 
+    //method to launch the Contact DialogPane when creating a new contact
     @FXML
     public void showContactDialogue(){
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(mainPane.getScene().getWindow());
         dialog.setTitle("Add new contact");
         dialog.setHeaderText("Use this form to add first and last name and phone number of the contact. Add any notes as necessary.");
+        //create an FXMLLoader and set the location to the contact dialog fxml resource
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("contactDialog.fxml"));
 
@@ -117,6 +119,8 @@ public class Controller {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
         Optional<ButtonType> result = dialog.showAndWait();
+        //When the OK button is pressed, call the method from the ContactDialogController
+        //to save the user input and create a new Contact
         if(result.isPresent() && result.get() == ButtonType.OK){
             ContactDialogController controller = fxmlLoader.getController();
             Contact newContact = controller.processInput();
@@ -180,6 +184,8 @@ public class Controller {
         }
     }
 
+    //Method to launch the DialogPane and edit an item
+    //This works in a manner closely comparable to the showContactDialogue() method
     @FXML
     public void editSelectedItem(){
         Contact selectedContact = contactTableView.getSelectionModel().getSelectedItem();

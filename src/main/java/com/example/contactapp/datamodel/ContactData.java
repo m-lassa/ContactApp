@@ -42,55 +42,55 @@ public class ContactData {
         try {
             // Create a new XMLInputFactory and set up an EventReader
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-            InputStream in = new FileInputStream(CONTACTS_FILE);
-            XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
-            // read the XML document
+            InputStream inputStream = new FileInputStream(CONTACTS_FILE);
+
+            XMLEventReader xmlReader = inputFactory.createXMLEventReader(inputStream);
             Contact contact = null;
+            // read the XML document
+            while (xmlReader.hasNext()) {
+                XMLEvent xmlEvent = xmlReader.nextEvent();
 
-            while (eventReader.hasNext()) {
-                XMLEvent event = eventReader.nextEvent();
-
-                if (event.isStartElement()) {
-                    StartElement startElement = event.asStartElement();
+                if (xmlEvent.isStartElement()) {
+                    StartElement startElement = xmlEvent.asStartElement();
                     // If we have a contact item, we create a new contact
                     if (startElement.getName().getLocalPart().equals(CONTACT)) {
                         contact = new Contact("", "", "", "");
                         continue;
                     }
 
-                    if (event.isStartElement()) {
-                        if (event.asStartElement().getName().getLocalPart()
+                    if (xmlEvent.isStartElement()) {
+                        if (xmlEvent.asStartElement().getName().getLocalPart()
                                 .equals(FIRST_NAME)) {
-                            event = eventReader.nextEvent();
-                            contact.setFirstName((event.asCharacters().getData()));
+                            xmlEvent = xmlReader.nextEvent();
+                            contact.setFirstName((xmlEvent.asCharacters().getData()));
                             continue;
                         }
                     }
-                    if (event.asStartElement().getName().getLocalPart()
+                    if (xmlEvent.asStartElement().getName().getLocalPart()
                             .equals(LAST_NAME)) {
-                        event = eventReader.nextEvent();
-                        contact.setLastName((event.asCharacters().getData()));
+                        xmlEvent = xmlReader.nextEvent();
+                        contact.setLastName((xmlEvent.asCharacters().getData()));
                         continue;
                     }
 
-                    if (event.asStartElement().getName().getLocalPart()
+                    if (xmlEvent.asStartElement().getName().getLocalPart()
                             .equals(PHONE_NUMBER)) {
-                        event = eventReader.nextEvent();
-                        contact.setPhoneNumber((event.asCharacters().getData()));
+                        xmlEvent = xmlReader.nextEvent();
+                        contact.setPhoneNumber((xmlEvent.asCharacters().getData()));
                         continue;
                     }
 
-                    if (event.asStartElement().getName().getLocalPart()
+                    if (xmlEvent.asStartElement().getName().getLocalPart()
                             .equals(NOTES)) {
-                        event = eventReader.nextEvent();
-                        contact.setNotes((event.asCharacters().getData()));
+                        xmlEvent = xmlReader.nextEvent();
+                        contact.setNotes((xmlEvent.asCharacters().getData()));
                         continue;
                     }
                 }
 
                 // If we reach the end of a contact element, we add it to the list
-                if (event.isEndElement()) {
-                    EndElement endElement = event.asEndElement();
+                if (xmlEvent.isEndElement()) {
+                    EndElement endElement = xmlEvent.asEndElement();
                     if (endElement.getName().getLocalPart().equals(CONTACT)) {
                         contacts.add(contact);
                     }
